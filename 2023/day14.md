@@ -66,7 +66,7 @@ Usually these images are updated regularly, so you should not expect to see many
 
 This might not be case with older images, random images, not backed by big companies or your own images if you are not taking care of them.
 
-For example, if we scan some random image 2 year old image from the `springio` organization on Docker Hub we see that there are a lot more vulnerabilities lurking:
+For example, if we scan some random 2-year old image from the `springio` organization on Docker Hub we see that there are a lot more vulnerabilities lurking:
 
 ```console
 $ grype springio/petclinic:latest
@@ -252,11 +252,6 @@ Another thing worth mentioning is that this type of scanning only detects _known
 That is, vulnerabilities that have been found by security researchers and that have assigned CVEs.
 There might be still vulnerabilities that are not known and are just lurking in your code/dependencies (Log4Shell has been in the wild since 2013, only found in 2021).
 
-In summary, image scanning is not a silver bullet.
-If an image scanner tells you that you have 0 vulnerabilities in your image, that does not mean that you are 100% secure.
-
-Also, mitigating vulnerabilities can be as simple as bumping a version of a dependency (or downgrading one), but sometimes it can be more tricky because that version bump might require a change in your code.
-
 ## CVEs
 
 In the vulnerability table provided by our scanner we see something that starts with `CVE-`:
@@ -274,6 +269,12 @@ Each time a new vulnerability is found, it is assigned a CVE by the [CNA](https:
 Once this is done, this information is propagated to the vulnerabilities databases and can be leveraged by image scanners to warn about CVEs/vulnerabilities that are present in our container.
 
 ## Summary
+
+Image scanning is not a silver bullet.
+If an image scanner tells you that you have 0 vulnerabilities in your image, that does not mean that you are 100% secure.
+It only means that there are no known vulnerabilities inside your container image.
+
+Mitigating vulnerabilities can be as simple as bumping a version of a dependency (or downgrading one), but sometimes it can be more tricky because that version bump might require a change in your code.
 
 Now we know why image scanning is important and how it can help us be more secure.
 In [Day 15](day15.md) we are going to  dive deeper into the way the image scanners work under the hood, looking into things like SBOMs and vulnerability databases.

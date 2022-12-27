@@ -1,5 +1,14 @@
 # Container Image Scanning Advanced
 
+Yesterday we learned what is container image scanning and why it's important.
+
+Today, we are going to take a look at how exactly image scanning works and what happens when you run the `grype <IMAGE>` command that will scan your container image.
+
+First, `grype` will extract the **SBOM** of your container image.
+Then, it will cross-reference the data in that **SBOM** with a **Vulnerability Database** and it will output the results.
+
+So what is an **SBOM** and a **Vulnerability Database**?
+
 ## SBOM
 
 **SBOM** stands for **S**oftware **B**ill **O**f **M**aterials.
@@ -221,7 +230,15 @@ The combination of these 8 vectors determines the CVSS score.
 It is between 0 and 10.
 0 being the lowest possible, and 10 being the highest (most critical).
 
-[Here](https://www.first.org/cvss/calculator/3.0) you can find a CVSS calculator, wher you can calculate the score of each vulnerability.
+[Here](https://www.first.org/cvss/calculator/3.0) you can find a CVSS calculator, which you can use to calculate the score of each vulnerability.
+
+## Summary
+
+When you scan an image, the scanner extracts the SBOM of the image and cross-references that with a vulnerability database to determine the exact count of vulnerabilities in your image.
+
+Each vulnerability has a CVSS score that you can use to determine how risky it is to ship you image with this vulnerability.
+
+Vulnerabilities that are easy to exploit and don't require any special permissions have high CVSS scores, while vulnerabilities that are harder to exploit and require a special access (like the attacker having physical acess to your server) have lower CVSS score.
 
 ## Resources
 
